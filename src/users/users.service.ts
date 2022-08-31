@@ -14,7 +14,9 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    return await this.userRepository.save(createUserDto);
+    const newUser = await this.userRepository.save(createUserDto);
+    delete newUser.password;
+    return newUser;
   }
 
   async findAll() {
@@ -31,6 +33,11 @@ export class UsersService {
     }
 
     return user;
+  }
+
+  async findByEmail(email: string) {
+    const query = { where: [{ email }] };
+    return await this.userRepository.findOne(query);
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

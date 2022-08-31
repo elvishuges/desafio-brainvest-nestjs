@@ -5,8 +5,6 @@ import { UsersModule } from './users/users.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-//Load configs
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({

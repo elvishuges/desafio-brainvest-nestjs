@@ -16,7 +16,7 @@ export class User extends Base {
   @Column()
   email: string;
 
-  @Exclude({ toPlainOnly: true })
+  @Exclude()
   @Column({
     select: false,
     transformer: {
