@@ -20,8 +20,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // lista permitida de propriedade do DTO
-      forbidNonWhitelisted: true, // não permite
+      whitelist: true,
+      forbidNonWhitelisted: true,
       transform: true,
     }),
   );
