@@ -18,8 +18,10 @@ export class IsEmailUnique implements ValidatorConstraintInterface {
 
   public async validate(email: string): Promise<boolean> {
     const userExists = await this.usersService.findByEmail(email);
-
-    return userExists === undefined;
+    if (userExists) {
+      return false;
+    }
+    return true;
   }
 
   public defaultMessage(args: ValidationArguments): string {
