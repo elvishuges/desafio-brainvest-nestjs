@@ -6,7 +6,7 @@ import {
 
 import { Injectable } from '@nestjs/common';
 
-import { UsersService } from './../users.service';
+import { UsersService } from '../services/users.service';
 
 /**
  * Custom validation constraint for email uniqueness

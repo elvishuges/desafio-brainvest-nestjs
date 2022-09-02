@@ -21,8 +21,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Treinamento Blockhub - Nestjs')
     .setDescription('API para o treinamento de Nesjs')
-    .setVersion('1.0')
-    .addTag('treinamento')
+    .setVersion('2.0')
     .addBearerAuth(undefined, 'bearerAuth')
     .build();
 
