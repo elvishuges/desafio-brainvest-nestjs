@@ -4,8 +4,18 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { useContainer } from 'class-validator';
 
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const adapter = new FastifyAdapter();
+
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    adapter,
+  );
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   const config = new DocumentBuilder()
@@ -13,6 +23,7 @@ async function bootstrap() {
     .setDescription('API para o treinamento de Nesjs')
     .setVersion('1.0')
     .addTag('treinamento')
+    .addBearerAuth(undefined, 'bearerAuth')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
