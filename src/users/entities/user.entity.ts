@@ -16,9 +16,7 @@ export class User extends Base {
   @Column()
   email: string;
 
-  @Exclude()
   @Column({
-    select: false,
     transformer: {
       to(password: string) {
         return hashSync(password, 10);

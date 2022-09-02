@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthLoginDTO } from './../auth/dto/auth-login.dto';
+import { User } from './../users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -10,23 +11,17 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  public async findUser(email: string): Promise<any> {
+  public async findUser(email: string): Promise<User> {
     return this.usersService.findByEmail(email);
   }
 
   public async login(loginDto: AuthLoginDTO): Promise<any> {
     const payload: any = { email: loginDto.email, sub: loginDto.password };
     const accessToken = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(
-      {
-        ...payload,
-      },
-      { algorithm: 'RS256' },
-    );
-
+    const user = await this.findUser(loginDto.email);
     return {
+      email: user.email,
       accessToken,
-      refreshToken,
     };
   }
 }
