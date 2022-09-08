@@ -15,12 +15,11 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const newUser = await this.userRepository.save(createUserDto);
-    delete newUser.password;
-    return newUser;
+    return this.findOne(newUser.id);
   }
 
   async findAll() {
-    return await this.userRepository.find({});
+    return await this.userRepository.find();
   }
 
   async findOne(id: number) {

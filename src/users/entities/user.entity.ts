@@ -26,5 +26,6 @@ export class User extends Base {
       },
     },
   })
+  @Exclude({ toPlainOnly: false })
   password: string;
 }

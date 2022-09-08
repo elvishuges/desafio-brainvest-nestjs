@@ -7,23 +7,21 @@ import {
   Column,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 export abstract class Base {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ select: false })
-  @CreateDateColumn()
+  @CreateDateColumn({ select: false })
   readonly createdAt: Date;
 
-  @Column({ select: false })
-  @UpdateDateColumn()
+  @UpdateDateColumn({ select: false })
   readonly updatedAt: Date;
 
-  @Column({ select: false })
-  @DeleteDateColumn()
+  @DeleteDateColumn({ select: false })
   readonly deletedAt: Date;
 
-  @Column({ select: false })
-  @VersionColumn()
+  @VersionColumn({ select: false })
   readonly version: number;
 }

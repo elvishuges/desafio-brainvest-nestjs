@@ -75,8 +75,6 @@ describe('UsersController', () => {
     delete created.password;
     delete user.password;
 
-    console.log('creat', created);
-
     expect(created).toEqual({
       id: expect.any(String),
       ...user,

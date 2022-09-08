@@ -18,9 +18,9 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
-@ApiTags('users')
 @ApiBearerAuth('bearerAuth')
 @Controller('users')
+@ApiTags('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
