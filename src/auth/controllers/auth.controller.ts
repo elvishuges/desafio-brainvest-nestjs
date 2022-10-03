@@ -7,6 +7,7 @@ import { LocalAuthGuard } from '../guards/local-auth.guard';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 import { AuthLoginDTO } from '../dto/auth-login.dto';
+import { AuthRegisterDTO } from '../dto/auth.register.dto';
 import { CreateUserDto } from '../../users/dto/create-user.dto';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -24,9 +25,14 @@ export class AuthController {
     return this.authService.login(user);
   }
 
+  @Post('register')
+  async register(@Body() user: AuthRegisterDTO): Promise<any> {
+    return this.authService.register(user);
+  }
+
   @UseGuards(JwtAuthGuard)
-  @Get('user')
+  @Get('test-auth')
   getUser(): any {
-    return 'User list test';
+    return 'Token Ok !!';
   }
 }

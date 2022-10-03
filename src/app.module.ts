@@ -7,8 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthService } from './auth/services/auth.service';
 import { AuthModule } from './auth/auth.module';
-import { SaleController } from './sale/sale.controller';
 import { SalesController } from './sales/controllers/sales.controller';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
   imports: [
@@ -17,12 +17,14 @@ import { SalesController } from './sales/controllers/sales.controller';
       database: 'desafioDB',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     UsersModule,
     AuthModule,
     ConfigModule.forRoot(),
+    SalesModule,
   ],
-  controllers: [AppController, SaleController, SalesController],
+  controllers: [AppController, SalesController],
   providers: [AppService, AuthService],
 })
 export class AppModule {}

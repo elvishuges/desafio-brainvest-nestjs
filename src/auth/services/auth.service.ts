@@ -24,4 +24,8 @@ export class AuthService {
       accessToken,
     };
   }
+
+  public async register(loginDto: AuthLoginDTO): Promise<any> {
+    return 'developing';
+  }
 }
