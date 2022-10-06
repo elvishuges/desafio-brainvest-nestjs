@@ -9,6 +9,8 @@ import { AuthService } from './auth/services/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { SalesController } from './sales/controllers/sales.controller';
 import { SalesModule } from './sales/sales.module';
+import { ProductsController } from './products/controllers/products.controller';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { SalesModule } from './sales/sales.module';
     AuthModule,
     ConfigModule.forRoot(),
     SalesModule,
+    ProductsModule,
   ],
   controllers: [AppController, SalesController],
   providers: [AppService, AuthService],

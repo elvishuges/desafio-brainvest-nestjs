@@ -8,6 +8,7 @@ import {
 } from 'class-validator';
 import { User } from '../../users/entities/user.entity';
 import { Column } from 'typeorm';
+import { Product } from 'src/products/entities/product.entity';
 
 export class CreateSaleDto {
   @ApiProperty()
@@ -17,6 +18,10 @@ export class CreateSaleDto {
 
   @Column()
   @ApiProperty()
-  @IsNotEmpty()
   user: User;
+
+  @Column()
+  @ApiProperty()
+  @IsNotEmpty()
+  products: Product[];
 }

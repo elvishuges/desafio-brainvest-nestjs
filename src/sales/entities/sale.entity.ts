@@ -1,4 +1,11 @@
-import { Entity, Column, Index, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  Index,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 
 import { Base } from './../../core/entities/base';
 import { User } from './../../users/entities/user.entity';
@@ -12,4 +19,7 @@ export class Sale extends Base {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
+
+  @OneToMany(() => Product, (product) => product.sale)
+  products: Product[];
 }

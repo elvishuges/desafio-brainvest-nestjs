@@ -19,7 +19,9 @@ export class SalesService {
   async findOne(id: number) {
     const query = { where: { id } };
 
-    const sale = await this.saleRepository.findOne(query);
+    const sale = await this.saleRepository.find({
+      loadRelationIds: { relations: ['products'] },
+    });
 
     if (!sale) {
       throw new HttpException(`sale id ${id} not found`, HttpStatus.NOT_FOUND);

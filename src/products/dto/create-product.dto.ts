@@ -5,5 +5,5 @@ export class CreateProductDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly firstName: string;
+  readonly name: string;
 }
