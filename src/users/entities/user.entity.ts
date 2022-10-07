@@ -4,6 +4,7 @@ import { hashSync } from 'bcrypt';
 
 import { Base } from './../../core/entities/base';
 import { Product } from './../../products/entities/product.entity';
+import { Sale } from './../../sales/entities/sale.entity';
 
 @Entity('user')
 export class User extends Base {
@@ -30,7 +31,6 @@ export class User extends Base {
   @Exclude({ toPlainOnly: false })
   password: string;
 
-  @OneToOne(() => Product)
-  @JoinColumn()
-  profile: Product;
+  @OneToOne(() => Sale, (sale) => sale.user)
+  sale: Sale;
 }

@@ -4,16 +4,17 @@ import { Repository } from 'typeorm';
 import { Sale } from '../entities/sale.entity';
 
 import { CreateSaleDto } from '../dto/create-sale.dto';
+import { Product } from 'src/products/entities/product.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class SalesService {
   constructor(
-    @InjectRepository(Sale) private saleRepository: Repository<Sale>,
+    @InjectRepository(Sale) private readonly saleRepository: Repository<Sale>,
   ) {}
 
-  async create(createSaleDto: CreateSaleDto) {
-    const newSale = await this.saleRepository.save(createSaleDto);
-    return this.findOne(newSale.id);
+  async create(user: User, products: Product[]) {
+    return await this.saleRepository.save({ seller: user, products: products });
   }
 
   async findOne(id: number) {

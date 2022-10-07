@@ -1,27 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  Length,
-  Validate,
-} from 'class-validator';
-import { User } from '../../users/entities/user.entity';
-import { Column } from 'typeorm';
-import { Product } from 'src/products/entities/product.entity';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateSaleDto {
   @ApiProperty()
-  @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  products: number[];
 
-  @Column()
-  @ApiProperty()
-  user: User;
-
-  @Column()
   @ApiProperty()
   @IsNotEmpty()
-  products: Product[];
+  user: number;
 }

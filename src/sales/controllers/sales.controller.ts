@@ -16,7 +16,8 @@ export class SalesController {
   @HttpCode(HttpStatus.CREATED)
   @Post()
   create(@Body() createSaleDto: CreateSaleDto) {
-    return this.salesService.create(createSaleDto);
+    // return this.salesService.create(createSaleDto.user,createSaleDto.products);
+    return 'Fake return';
   }
 
   @ApiOperation({ summary: 'Find user by id' })

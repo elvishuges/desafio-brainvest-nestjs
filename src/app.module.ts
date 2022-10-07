@@ -16,7 +16,7 @@ import { ProductsModule } from './products/products.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'desafioDB',
+      database: 'desafioDB_1',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,
@@ -27,7 +27,7 @@ import { ProductsModule } from './products/products.module';
     SalesModule,
     ProductsModule,
   ],
-  controllers: [AppController, SalesController],
+  controllers: [AppController],
   providers: [AppService, AuthService],
 })
 export class AppModule {}
