@@ -13,7 +13,11 @@ export class SalesService {
     @InjectRepository(Sale) private readonly saleRepository: Repository<Sale>,
   ) {}
 
-  async create(name, user: User, products: Product[]) {
+  async findAll() {
+    return this.saleRepository.find({ relations: ['products'] });
+  }
+
+  async create(name: string, user: User, products: Product[]) {
     return await this.saleRepository.save({
       name: name,
       seller: user,

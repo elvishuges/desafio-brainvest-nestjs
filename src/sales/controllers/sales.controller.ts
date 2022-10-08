@@ -18,6 +18,12 @@ export class SalesController {
     private readonly usersServices: UsersService,
   ) {}
 
+  @ApiOperation({ summary: 'Find all sales' })
+  @Get()
+  findAll() {
+    return this.salesService.findAll();
+  }
+
   @ApiOperation({ summary: 'Create new sale' })
   @HttpCode(HttpStatus.CREATED)
   @Post()
@@ -35,7 +41,7 @@ export class SalesController {
     return this.salesService.findOne(+id);
   }
 
-  async getProducts(productsId: number[]) {
+  private async getProducts(productsId: number[]) {
     return Promise.all(
       productsId.map((id) => {
         return this.productsService.findOne(id);
