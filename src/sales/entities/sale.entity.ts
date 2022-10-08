@@ -18,11 +18,9 @@ export class Sale extends Base {
   @Column()
   name: string;
 
-  @ApiProperty()
   @OneToMany(() => Product, (product) => product.sale)
   products: Product[];
 
-  @ApiProperty()
   @ManyToOne(() => User, (user) => user.sale)
   user: User;
 }

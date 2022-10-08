@@ -7,11 +7,17 @@ import { Product } from '../entities/product.entity';
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private saleRepository: Repository<Product>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
   ) {}
 
   async create(createProductDto: CreateProductDto) {
-    const newProduct = await this.saleRepository.save(createProductDto);
+    const newProduct = await this.productRepository.save(createProductDto);
     return newProduct;
+  }
+
+  async findOne(id: number): Promise<Product> {
+    const query = { where: { id } };
+    const product = await this.productRepository.findOne(query);
+    return product;
   }
 }
